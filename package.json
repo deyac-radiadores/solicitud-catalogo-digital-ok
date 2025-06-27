@@ -1,6 +1,7 @@
 {
   "name": "deyac-solicitud-catalogo-digital",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "echo 'Skip build'",
@@ -8,9 +9,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "node-fetch": "^3.3.2"
-  }
+  "license": "ISC"
 }
+
