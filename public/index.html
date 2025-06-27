@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Demo</title>
+</head>
+<body>
+  <form id="formCatalogo">
+    <input name="nombre" placeholder="Nombre" required />
+    <input name="correo" placeholder="Correo" type="email" required />
+    <input name="empresa" placeholder="Empresa" />
+    <textarea name="mensaje" placeholder="Mensaje"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <script>
+    document.getElementById('formCatalogo').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      console.log("Datos enviados:", data);
+      try {
+        await fetch("/.netlify/functions/sheets-proxy", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        alert("Enviado con éxito");
+      } catch (err) {
+        console.error(err);
+        alert("Error al enviar");
+      }
+    });
+  </script>
+</body>
+</html>
